@@ -15,17 +15,17 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Trello boards portuguese language translation
+ * Trello tasks portuguese language pack
  *
  * @package    local_trello
  * @copyright  2020 Willian Mano http://conecti.me
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Local Trello';
-$string['privacy:metadata'] = 'O plugin trello não guarda dados pessoais.';
+$string['pluginname'] = 'Trello tasks';
+$string['privacy:metadata'] = 'O plugin trello tasks não guarda dados pessoais.';
 
 $string['apikey'] = 'Chave da API';
-$string['apikey_help'] = 'Trello API key. Veja a documentação para saber como gerar: https://trello.com/app-key';
+$string['apikey_help'] = 'Chave da API do Trello. Veja a documentação para saber como gerar: https://trello.com/app-key';
 $string['apitoken'] = 'Token da API';
-$string['apitoken_help'] = 'Trello token da api. Veja a documentação para saber como gerar: https://trello.com/app-key';
+$string['apitoken_help'] = 'Token da API do Trello. Veja a documentação para saber como gerar: https://trello.com/app-key';

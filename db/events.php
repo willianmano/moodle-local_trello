@@ -16,7 +16,7 @@
 
 
 /**
- * Trello boards events listeners
+ * Trello tasks events listeners
  *
  * @package    local_trello
  * @copyright  2020 Willian Mano http://conecti.me

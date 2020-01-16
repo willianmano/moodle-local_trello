@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Trello boards creation.
+ * Trello tasks creation.
  *
  * @package    local_trello
  * @copyright  2020 Willian Mano http://conecti.me

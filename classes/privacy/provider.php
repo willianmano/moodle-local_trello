@@ -27,7 +27,7 @@ namespace local_trello\privacy;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * The classic theme does not store any data.
+ * The Trello tasks does not store any data.
  *
  * @copyright  2020 Willian Mano http://conecti.me
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

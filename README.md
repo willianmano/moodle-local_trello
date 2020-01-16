@@ -1,4 +1,4 @@
-Moodle Trello Boards
+Moodle Trello Tasks
 ===
 
 A local plugin to create Trello boards when a new course is created on Moodle

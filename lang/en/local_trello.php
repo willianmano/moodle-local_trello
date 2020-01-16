@@ -15,15 +15,15 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Trello boards portuguese language translation
+ * Trello tasks english language pack
  *
  * @package    local_trello
  * @copyright  2020 Willian Mano http://conecti.me
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Local Trello';
-$string['privacy:metadata'] = 'The report a problem plugin does not store any personal data.';
+$string['pluginname'] = 'Trello tasks';
+$string['privacy:metadata'] = 'The trello tasks plugin does not store any personal data.';
 
 $string['apikey'] = 'API key';
 $string['apikey_help'] = 'Trello API key. See the documentation to know how to generate it: https://trello.com/app-key';
