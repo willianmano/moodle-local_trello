@@ -29,3 +29,5 @@ $string['apikey'] = 'API key';
 $string['apikey_help'] = 'Trello API key. See the documentation to know how to generate it: https://trello.com/app-key';
 $string['apitoken'] = 'API token';
 $string['apitoken_help'] = 'Trello API token. See the documentation to know how to generate it: https://trello.com/app-key';
+$string['jsontemplate'] = 'JSON template';
+$string['jsontemplate_help'] = 'A JSON template with the lists and cards to be created inside the new board.';

@@ -3,6 +3,24 @@ Moodle Trello Tasks
 
 A local plugin to create Trello boards when a new course is created on Moodle
 
+Lists template
+---
+
+You can add a json data as a template for your lists and tasks that you commonly use to build your courses. For  example, the code below will create three lists and the list "To do" will have 4 cards. 
+
+```
+{
+     "Done":[],
+     "Doing":[],
+     "To do":[
+         "Add teachers",
+         "Configure the enrolment methods",
+         "Create groups",
+         "Add course syllabus"
+     ]
+ }
+```
+
 Developed and maintained by
 ---
 Willian Mano

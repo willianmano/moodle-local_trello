@@ -33,5 +33,8 @@ if ($hassiteconfig) {
 
     $settings->add(new admin_setting_configtext('local_trello/apitoken', get_string('apitoken', 'local_trello'),
         get_string('apitoken_help', 'local_trello'), '', PARAM_ALPHANUMEXT));
+
+    $settings->add(new admin_setting_configtextarea('local_trello/jsontemplate', get_string('jsontemplate', 'local_trello'),
+        get_string('jsontemplate_help', 'local_trello'), '', PARAM_RAW));
 }
 

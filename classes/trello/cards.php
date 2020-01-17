@@ -1,5 +1,5 @@
 <?php
-// This file is part of Ranking block for Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,19 +15,41 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Trello tasks portuguese language pack
+ * Trello cards request class
  *
  * @package    local_trello
  * @copyright  2020 Willian Mano http://conecti.me
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Trello tasks';
-$string['privacy:metadata'] = 'O plugin trello tasks não guarda dados pessoais.';
+namespace local_trello\trello;
 
-$string['apikey'] = 'Chave da API';
-$string['apikey_help'] = 'Chave da API do Trello. Veja a documentação para saber como gerar: https://trello.com/app-key';
-$string['apitoken'] = 'Token da API';
-$string['apitoken_help'] = 'Token da API do Trello. Veja a documentação para saber como gerar: https://trello.com/app-key';
-$string['jsontemplate'] = 'Template JSON';
-$string['jsontemplate_help'] = 'Um template json com os listas e cards a serem criados dentro do board.';
+defined('MOODLE_INTERNAL') || die();
+
+class cards extends request {
+    /* The trello target object. */
+    protected $target = 'cards';
+
+    /**
+     * Cretes a new card and returns it id
+     *
+     * @param $name
+     * @param $listid
+     *
+     * @return bool
+     *
+     * @throws \Exception
+     */
+    public function create($name, $listid) {
+        $response = $this->post([
+            'name' => $name,
+            'idList' => $listid,
+        ]);
+
+        if ($response) {
+            return $response->id;
+        }
+
+        return false;
+    }
+}

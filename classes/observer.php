@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Trello tasks creation.
+ * Trello tasks observer.
  *
  * @package    local_trello
  * @copyright  2020 Willian Mano http://conecti.me
@@ -24,7 +24,10 @@
 
 namespace local_trello;
 
-// This line protects the file from being accessed by a URL directly.
+use local_trello\trello\boards;
+use local_trello\trello\lists;
+use local_trello\trello\cards;
+
 defined('MOODLE_INTERNAL') || die();
 
 class observer {
@@ -33,7 +36,7 @@ class observer {
      *
      * @param \core\event\course_created $event
      *
-     * @return void
+     * @return boolean
      *
      * @throws \coding_exception
      * @throws \dml_exception
@@ -41,36 +44,52 @@ class observer {
     public static function course_created(\core\event\course_created $event) {
         $course = $event->get_record_snapshot('course', $event->objectid);
 
-        $apikey = get_config('local_trello', 'apikey');
-        $apitoken = get_config('local_trello', 'apitoken');
-
-        $parameters = [
-            'name' => $course->fullname,
-            'defaultLists' => true,
-            'key' => $apikey,
-            'token' => $apitoken
-        ];
-
-        $trelloapiurl = sprintf('https://api.trello.com/1/boards?%s', utf8_encode(http_build_query(
-            $parameters,
-            '',
-            '&'
-        )));
-
         try {
-            $ch = curl_init($trelloapiurl);
+            $jsontemplateconfig = get_config('local_trello', 'jsontemplate');
 
-            curl_setopt($ch, CURLOPT_URL, $trelloapiurl);
-            curl_setopt($ch, CURLOPT_VERBOSE, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
+            $boards = new boards();
 
-            curl_exec($ch);
+            if (!$jsontemplateconfig) {
+                $boards->create($course->fullname, true);
 
-            curl_close($ch);
+                return true;
+            }
+
+            $jsontemplate = json_decode($jsontemplateconfig);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                $boards->create($course->fullname, true);
+
+                return true;
+            }
+
+            $boardid = $boards->create($course->fullname);
+
+            $lists = new lists();
+            $cards = new cards();
+            foreach ($jsontemplate as $key => $value) {
+                if (!is_string($key)) {
+                    continue;
+                }
+
+                $listid = $lists->create($key, $boardid);
+
+                if (is_array($value) && !empty($value)) {
+                    foreach ($value as $cardname) {
+                        if (!is_string($cardname)) {
+                            continue;
+                        }
+
+                        $cards->create($cardname, $listid);
+                    }
+                }
+            }
+
+            return true;
         } catch (\Exception $e) {
             \core\notification::error($e->getMessage());
+
+            return false;
         }
     }
 }

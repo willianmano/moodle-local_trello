@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 // This is the version of the plugin.
-$plugin->version = 2020011500;
+$plugin->version = 2020011600;
 
 // This is the version of Moodle this plugin requires.
 $plugin->requires = 2019111200;
@@ -36,7 +36,7 @@ $plugin->requires = 2019111200;
 $plugin->component = 'local_trello';
 
 // This is the named version.
-$plugin->release = '0.0.1';
+$plugin->release = '0.0.2';
 
 // This is a stable release.
 $plugin->maturity = MATURITY_STABLE;
